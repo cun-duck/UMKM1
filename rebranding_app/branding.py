@@ -3,6 +3,7 @@ import re
 from huggingface_hub import InferenceClient
 import streamlit as st
 
+# Mengambil token langsung dari st.secrets
 LLM_HF_TOKEN = st.secrets["LLM_HF_TOKEN"]
 
 def generate_branding(product_name: str, product_type: str):
@@ -18,7 +19,7 @@ def generate_branding(product_name: str, product_type: str):
         '**Deskripsi Singkat:** [Deskripsi singkat tentang identitas merek]\n'
         '**Prompt Gambar:** [Prompt untuk menghasilkan visualisasi produk]\n\n'
         "Keluaran harus berupa JSON dengan struktur:\n"
-        '{"branding": {"nama_brand": "ContohMerek", "slogan": "Slogan Menarik dalam bahasa indonesia", "deskripsi_singkat dalam bahasa indonesia": "Deskripsi singkat"}, "image_prompt": "prompt untuk membuat visualisasi iklan produk dari brand tersebut, pastikan nama brand ada di dalam tanda kutip ( contoh "Sarimi") pastikan tercipta visualisasi iklan yang menarik dan modern dan dalam bahasa inggris, maksimal 50 kata, gunakan tanda koma untuk efisiensi elemen prompt."}'
+        '{"branding": {"nama_brand": "ContohMerek", "slogan": "Slogan Menarik dalam bahasa indonesia", "deskripsi_singkat dalam bahasa indonesia": "Deskripsi singkat"}, "image_prompt": "prompt untuk membuat visualisasi iklan produk dari brand tersebut, pastikan nama brand ada di dalam tanda kutip (contoh \\"Sarimi\\"), pastikan tercipta visualisasi iklan yang menarik dan modern dan dalam bahasa inggris, maksimal 50 kata, gunakan tanda koma untuk efisiensi elemen prompt."}'
     )
     
     user_prompt = (
@@ -27,7 +28,8 @@ def generate_branding(product_name: str, product_type: str):
         "Buat identitas merek sesuai dengan format yang telah diberikan di atas."
     )
     
-    client = InferenceClient(provider="hf-inference", api_key=config.LLM_HF_TOKEN)
+    # Gunakan token yang diambil dari st.secrets
+    client = InferenceClient(provider="hf-inference", api_key=LLM_HF_TOKEN)
     
     messages = [
         {"role": "system", "content": system_prompt},
@@ -52,7 +54,6 @@ def generate_branding(product_name: str, product_type: str):
     
     output_text = response.choices[0].message.get("content", "").strip()
     
-
     try:
         data = json.loads(output_text)
     except Exception:
@@ -75,13 +76,11 @@ def generate_branding(product_name: str, product_type: str):
     image_prompt = data.get("image_prompt", "").strip()
     nama_brand = branding_data.get("nama_brand", product_name)
     
-    
     if f'"{nama_brand}"' not in image_prompt:
         if "logo" in image_prompt.lower():
             image_prompt = re.sub(r'(logo)', r'\1 "' + nama_brand + r'"', image_prompt, flags=re.IGNORECASE)
         else:
             image_prompt = f'"{nama_brand}" ' + image_prompt
-    
     
     image_prompt = image_prompt.replace("縫の", "kuning")
     
