@@ -1,5 +1,4 @@
 from huggingface_hub import InferenceClient
-from rebranding_app import config
 
 def generate_image(prompt: str):
     
