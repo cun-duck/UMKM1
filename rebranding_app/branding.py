@@ -1,4 +1,4 @@
-gimport json
+import json
 import re
 from huggingface_hub import InferenceClient
 import streamlit as st
