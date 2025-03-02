@@ -2,12 +2,12 @@ import streamlit as st
 from rebranding_app import branding, image_generator
 
 def main():
-    st.set_page_config(page_title="Rebranding UMKM", layout="wide")
+    st.set_page_config(page_title="Rebranding", layout="wide")
     st.title("Rebranding Produk UMKM")
     
     st.sidebar.header("Input Produk")
-    product_name = st.sidebar.text_input("Nama Produk", value="PotatoPuff ATLANTA", key="prod_name")
-    product_type = st.sidebar.text_input("Jenis Produk", value="Food & Beverage", key="prod_type")
+    product_name = st.sidebar.text_input("Nama Produk", value="Sarimi", key="prod_name")
+    product_type = st.sidebar.text_input("Jenis Produk", value="Mie Instant", key="prod_type")
     
     if st.sidebar.button("Buat Branding"):
         if product_name and product_type:
