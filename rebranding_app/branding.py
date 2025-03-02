@@ -1,7 +1,6 @@
 import json
 import re
 from huggingface_hub import InferenceClient
-from rebranding_app import config
 
 def generate_branding(product_name: str, product_type: str):
     system_prompt = (
