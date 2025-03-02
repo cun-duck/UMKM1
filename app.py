@@ -3,7 +3,7 @@ from rebranding_app import branding, image_generator
 
 def main():
     st.set_page_config(page_title="Rebranding", layout="wide")
-    st.title("Rebranding Produk UMKM")
+    st.title("Rebranding Produk")
     
     st.sidebar.header("Input Produk")
     product_name = st.sidebar.text_input("Nama Produk", value="Sarimi", key="prod_name")
@@ -28,8 +28,8 @@ def main():
                 slogan = branding_data.get("slogan", "N/A")
                 deskripsi = branding_data.get("deskripsi_singkat", "N/A")
                 
-                st.markdown(f"<h1 style='text-align: center;'>{nama_brand}</h1>", unsafe_allow_html=True)
-                st.markdown(f"<h3 style='text-align: center;'>{slogan}</h3>", unsafe_allow_html=True)
+                st.markdown(f"<h1 style='text-align: center; color:#1cff37'>{nama_brand}</h1>", unsafe_allow_html=True)
+                st.markdown(f"<h3 style='text-align: center; color:#737d7b'>{slogan}</h3>", unsafe_allow_html=True)
                 st.markdown(f"<p style='text-align: center; font-style: italic;'>\"{deskripsi}\"</p>", unsafe_allow_html=True)
             else:
                 st.write("Tidak ada data branding.")
