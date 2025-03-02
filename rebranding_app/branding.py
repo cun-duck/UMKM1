@@ -1,4 +1,4 @@
-import json
+gimport json
 import re
 from huggingface_hub import InferenceClient
 import streamlit as st
@@ -19,7 +19,7 @@ def generate_branding(product_name: str, product_type: str):
         '**Deskripsi Singkat:** [Deskripsi singkat tentang identitas merek]\n'
         '**Prompt Gambar:** [Prompt untuk menghasilkan visualisasi produk]\n\n'
         "Keluaran harus berupa JSON dengan struktur:\n"
-        '{"branding": {"nama_brand": "ContohMerek", "slogan": "Slogan Menarik dalam bahasa indonesia", "deskripsi Singkat": "Deskripsi singkat dalam bahasa indonesia yang menarik"}, "image_prompt": "prompt untuk membuat visualisasi iklan produk dari brand tersebut, pastikan nama brand ada di dalam tanda kutip (contoh \\"Sarimi\\"), pastikan tercipta visualisasi iklan yang menarik dan modern dan dalam bahasa inggris, maksimal 50 kata, gunakan tanda koma untuk efisiensi elemen prompt."}'
+        '{"branding": {"nama_brand": "ContohMerek", "slogan": "Slogan Menarik dalam bahasa indonesia", "deskripsi Singkat": "Deskripsi singkat dalam bahasa indonesia yang menarik"}, "image_prompt": "prompt untuk membuat visualisasi iklan produk dari brand tersebut, pastikan nama brand ada di dalam tanda kutip (contoh \\"Sarimi\\"), kembangkan agar tercipta visualisasi iklan yang menarik dan modern dan dalam bahasa inggris, maksimal 50 kata, gunakan tanda koma untuk efisiensi elemen prompt."}'
     )
     
     user_prompt = (
