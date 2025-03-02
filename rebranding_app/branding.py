@@ -1,6 +1,9 @@
 import json
 import re
 from huggingface_hub import InferenceClient
+import streamlit as st
+
+LLM_HF_TOKEN = st.secrets["LLM_HF_TOKEN"]
 
 def generate_branding(product_name: str, product_type: str):
     system_prompt = (
